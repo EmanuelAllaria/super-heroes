@@ -1,115 +1,241 @@
+/*  Modern, responsive styling for Super Heroes cards  */
+:root {
+  --primary: #00669f;
+  --accent: #1cd1b0;
+  --bg: #f5f7fb;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --card: #ffffff;
+  --danger: #ff4d67;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    overflow-x: hidden;
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
 }
 
 .descuentos {
-    height: 30px;
-    background: #1CD1B0;
-    padding: 5px;
-    font-size: 15px;
+  height: 36px;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 header {
-    background: #00669F;
-    padding: 20px;
-    position: sticky;
-    top: 0;
-    z-index: 9999;
+  background: var(--primary);
+  color: #fff;
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+header h1 {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  font-weight: 700;
 }
 
 #cards_heroes {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-around;
-    height: calc(100vh - 147px);
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 16px 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
 }
 
 #cards_heroes .card {
-    margin-bottom: 260px !important;
-    position: relative;
-    margin-top: 50px;
-    margin-left: 10px;
+  background: var(--card);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+#cards_heroes .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+#cards_heroes .card .img {
+  position: relative;
+  height: 160px;
+  overflow: hidden;
 }
 
 #cards_heroes .card .img img {
-    width: 200px;
-    height: 150px;
-    border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1);
+  transition: transform 0.5s ease;
 }
+
 #cards_heroes .card .img i {
-    font-size: 30px;
-    position: absolute;
-    left: 10%;
-    margin-top: 15px;
+  pointer-events: none;
+}
+
+#cards_heroes .card .img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+}
+
+#cards_heroes .card:hover .img img {
+  transform: scale(1.05);
+}
+
+.like-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  color: var(--danger);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.like-btn:hover {
+  transform: translateY(-1px);
+}
+.like-btn:active {
+  transform: translateY(0);
+}
+.like-btn.liked {
+  background: var(--danger);
+  color: #fff;
 }
 
 #cards_heroes .card .img_heroe {
-    position: relative;
-    top: -70px;
-    left: 50px;
+  display: flex;
+  justify-content: center;
+  margin-top: -32px;
+  z-index: 10;
 }
 
 #cards_heroes .card .img_heroe img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  background: #fff;
 }
 
 #cards_heroes .card .titulo {
-    position: absolute;
-    width: 200px;
-    left: 0;
-    background: #F3F3F3;
-    margin-top: -21px;
-    padding-top: 50px;
-    padding-bottom: 50px;
+  padding: 48px 16px 20px;
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 auto;
 }
 
 .titulo h2 {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.titulo a {
-    padding: 10px;
-    background: #00669F;
-    color: #000;
-    text-decoration: none;
-    margin-left: 55px;
-    position: relative;
-    top: 20px;
+  text-align: center;
+  margin: 0 0 8px;
+  font-size: 1.25rem;
 }
 
 .titulo p {
-    font-size: 13px;
-    width: 200px;
-    padding: 10px;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0 0 16px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5; /* limita texto para alturas parejas */
+  overflow: hidden;
+  min-height: calc(1.5em * 5); /* reserva espacio uniforme */
+}
+
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0 0 16px 0;
+}
+
+.chips li {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  padding: 6px 10px;
+}
+
+.titulo a {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+  margin-top: auto; /* ancla el botón al pie del contenido */
+}
+
+.titulo a:hover {
+  background: #005585;
+  transform: translateY(-2px);
 }
 
 footer {
-    padding: 10px;
-    background: #00669F;
-    text-align: center;
-    color: #fff;
-    width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
 }
 
-@media screen and (min-width: 320px) and (max-width: 630px) {
-    #cards_heroes {
-        height: inherit;
-    }
-    #cards_heroes .card {
-        margin-bottom: 164px;
-        position: relative;
-        margin-top: 50px;
-        margin-left: 10px;
-    }
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+  #cards_heroes {
+    gap: 16px;
+  }
+  .titulo p {
+    font-size: 0.93rem;
+  }
+  .like-btn {
+    width: 36px;
+    height: 36px;
+  }
+  #cards_heroes .card .img {
+    height: 150px;
+  }
 }
